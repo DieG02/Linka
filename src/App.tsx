@@ -4,7 +4,7 @@ import URLShortener from './components/URLShortener';
 import StatsCard from './components/StatsCard';
 import RecentLinks from './components/RecentLinks';
 import Features from './components/Features';
-import { BarChart3, MousePointer, Link, Users } from 'lucide-react';
+import { BarChart3, MousePointer, Link, Users, Zap } from 'lucide-react';
 
 function App() {
   return (
