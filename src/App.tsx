@@ -5,7 +5,7 @@ import StatsCard from './components/StatsCard';
 import RecentLinks from './components/RecentLinks';
 import Features from './components/Features';
 import Footer from './components/Footer';
-import { FiBarChart3, FiMousePointer, FiLink, FiUsers } from 'react-icons/fi';
+import { FiTrendingUp, FiMousePointer, FiLink, FiUsers } from 'react-icons/fi';
 
 function App() {
   return (
@@ -83,7 +83,7 @@ function App() {
             <StatsCard
               title="CTR"
               value="23.4%"
-              icon={FiBarChart3}
+              icon={FiTrendingUp}
               change="+5%"
               changeType="positive"
               description="Average click-through rate across all shortened links"
