@@ -49,7 +49,7 @@ const URLShortener = () => {
     <div className="w-full max-w-4xl mx-auto">
       <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 p-8 md:p-12">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4 font-sora">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Shorten Your URL
           </h2>
           <p className="text-gray-600 text-lg">
@@ -72,7 +72,7 @@ const URLShortener = () => {
               placeholder="https://example.com/your-long-url"
               value={url}
               onChange={handleUrlChange}
-              className={`w-full pl-16 pr-6 py-6 text-lg border-2 rounded-2xl focus:outline-none transition-all duration-200 bg-gray-50/50 font-sora placeholder-gray-400 ${
+              className={`w-full pl-16 pr-6 py-6 text-lg border-2 rounded-2xl focus:outline-none transition-all duration-200 bg-gray-50/50  placeholder-gray-400 ${
                 !isValidUrl
                   ? "border-red-300 focus:border-red-500"
                   : "border-gray-200 focus:border-indigo-500"
@@ -103,7 +103,7 @@ const URLShortener = () => {
           {shortenedUrl && (
             <div className="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-200/50 rounded-2xl p-8 animate-slide-up">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="font-semibold text-gray-900 font-sora text-lg">
+                <h3 className="font-semibold text-gray-900  text-lg">
                   Your shortened URL:
                 </h3>
                 <button className="bg-white p-3 rounded-xl hover:bg-gray-50 transition-colors shadow-sm">

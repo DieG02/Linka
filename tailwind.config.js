@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sora: ["Sora", "sans-serif"],
+        sans: ["Montserrat", "sans-serif"],
       },
       colors: {
         primary: {

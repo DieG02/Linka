@@ -40,7 +40,7 @@ const StatsCard: React.FC<StatsCardProps> = ({
       </div>
 
       <div className="mb-6">
-        <h3 className="text-4xl font-bold text-gray-900 mb-2 font-sora group-hover:text-indigo-600 transition-colors">
+        <h3 className="text-4xl font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors">
           {value}
         </h3>
         <p className="text-gray-600 font-medium mb-3 text-lg">{title}</p>

@@ -94,7 +94,7 @@ const Footer = () => {
               <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-3 rounded-2xl">
                 <FiLink className="h-8 w-8 text-white" />
               </div>
-              <span className="text-3xl font-bold font-sora">LinkCraft</span>
+              <span className="text-3xl font-bold">LinkCraft</span>
             </div>
             <p className="text-gray-400 text-lg leading-relaxed mb-8 max-w-md">
               The most powerful URL shortener with advanced analytics, custom
@@ -121,7 +121,7 @@ const Footer = () => {
           {/* Links sections */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="text-white font-semibold text-lg mb-6 font-sora">
+              <h4 className="text-white font-semibold text-lg mb-6 ">
                 {category}
               </h4>
               <ul className="space-y-4">
@@ -143,7 +143,7 @@ const Footer = () => {
         {/* Newsletter signup */}
         <div className="bg-gray-800 rounded-3xl p-8 mb-12">
           <div className="max-w-2xl mx-auto text-center">
-            <h3 className="text-2xl font-bold mb-4 font-sora">Stay Updated</h3>
+            <h3 className="text-2xl font-bold mb-4 ">Stay Updated</h3>
             <p className="text-gray-400 mb-6">
               Get the latest features, tips, and insights delivered to your
               inbox.

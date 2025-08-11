@@ -43,9 +43,7 @@ const RecentLinks = () => {
   return (
     <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-bold text-gray-900 font-sora">
-          Recent Links
-        </h3>
+        <h3 className="text-2xl font-bold text-gray-900">Recent Links</h3>
         <button className="text-primary-600 hover:text-primary-700 font-medium">
           View All
         </button>

@@ -13,7 +13,7 @@ const Header = () => {
               <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-3 rounded-2xl shadow-lg">
                 <FiLink className="h-7 w-7 text-white" />
               </div>
-              <span className="text-2xl font-bold font-sora bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
                 LinkCraft
               </span>
             </div>

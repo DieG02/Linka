@@ -110,7 +110,7 @@ const Features = () => {
               ✨ Powerful Features
             </span>
           </div>
-          <h2 className="text-5xl font-bold text-gray-900 mb-6 font-sora">
+          <h2 className="text-5xl font-bold text-gray-900 mb-6">
             Everything You Need to
             <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent block">
               Succeed Online
@@ -134,7 +134,7 @@ const Features = () => {
                 <feature.icon className="h-8 w-8 text-white" />
               </div>
 
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 font-sora">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 ">
                 {feature.title}
               </h3>
 
@@ -169,7 +169,7 @@ const Features = () => {
                   <feature.icon className="h-6 w-6 text-indigo-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2 font-sora">
+                  <h4 className="font-semibold text-gray-900 mb-2 ">
                     {feature.title}
                   </h4>
                   <p className="text-sm text-gray-600">{feature.desc}</p>

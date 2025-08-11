@@ -8,7 +8,7 @@ import { FiTrendingUp, FiMousePointer, FiLink, FiUsers } from "react-icons/fi";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 font-sora">
+    <div className="min-h-screen bg-gray-50">
       <Header />
 
       {/* Hero Section */}
