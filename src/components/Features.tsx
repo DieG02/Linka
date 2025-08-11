@@ -1,7 +1,6 @@
 import React from 'react';
 import { 
   FiShield, 
-  FiBarChart3, 
   FiSmartphone, 
   FiZap, 
   FiGlobe, 
@@ -13,11 +12,12 @@ import {
   FiClock,
   FiTarget
 } from 'react-icons/fi';
+import { BarChart3 } from 'lucide-react';
 
 const Features = () => {
   const mainFeatures = [
     {
-      icon: FiBarChart3,
+      icon: BarChart3,
       title: 'Advanced Analytics',
       description: 'Get detailed insights with real-time click tracking, geographic data, device information, and referrer analysis.',
       features: ['Real-time tracking', 'Geographic insights', 'Device analytics', 'Referrer data']
