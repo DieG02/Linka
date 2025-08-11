@@ -1,57 +1,86 @@
-import React from 'react';
-import { FiLink, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
-import { 
-  FaTwitter, 
-  FaLinkedin, 
-  FaGithub, 
-  FaDiscord, 
-  FaYoutube, 
-  FaInstagram 
-} from 'react-icons/fa';
+import { FiLink, FiMail, FiPhone, FiMapPin } from "react-icons/fi";
+import {
+  FaTwitter,
+  FaLinkedin,
+  FaGithub,
+  FaDiscord,
+  FaYoutube,
+  FaInstagram,
+} from "react-icons/fa";
 
 const Footer = () => {
   const socialLinks = [
-    { icon: FaTwitter, href: '#', label: 'Twitter', color: 'hover:text-blue-400' },
-    { icon: FaLinkedin, href: '#', label: 'LinkedIn', color: 'hover:text-blue-600' },
-    { icon: FaGithub, href: '#', label: 'GitHub', color: 'hover:text-gray-400' },
-    { icon: FaDiscord, href: '#', label: 'Discord', color: 'hover:text-indigo-400' },
-    { icon: FaYoutube, href: '#', label: 'YouTube', color: 'hover:text-red-500' },
-    { icon: FaInstagram, href: '#', label: 'Instagram', color: 'hover:text-pink-500' }
+    {
+      icon: FaTwitter,
+      href: "#",
+      label: "Twitter",
+      color: "hover:text-blue-400",
+    },
+    {
+      icon: FaLinkedin,
+      href: "#",
+      label: "LinkedIn",
+      color: "hover:text-blue-600",
+    },
+    {
+      icon: FaGithub,
+      href: "#",
+      label: "GitHub",
+      color: "hover:text-gray-400",
+    },
+    {
+      icon: FaDiscord,
+      href: "#",
+      label: "Discord",
+      color: "hover:text-indigo-400",
+    },
+    {
+      icon: FaYoutube,
+      href: "#",
+      label: "YouTube",
+      color: "hover:text-red-500",
+    },
+    {
+      icon: FaInstagram,
+      href: "#",
+      label: "Instagram",
+      color: "hover:text-pink-500",
+    },
   ];
 
   const footerLinks = {
     Product: [
-      'Features',
-      'Analytics',
-      'API Documentation',
-      'Integrations',
-      'Mobile App',
-      'Browser Extension'
+      "Features",
+      "Analytics",
+      "API Documentation",
+      "Integrations",
+      "Mobile App",
+      "Browser Extension",
     ],
     Company: [
-      'About Us',
-      'Careers',
-      'Press Kit',
-      'Contact',
-      'Blog',
-      'Newsletter'
+      "About Us",
+      "Careers",
+      "Press Kit",
+      "Contact",
+      "Blog",
+      "Newsletter",
     ],
     Resources: [
-      'Help Center',
-      'Community',
-      'Tutorials',
-      'Status Page',
-      'Changelog',
-      'Roadmap'
+      "Help Center",
+      "Community",
+      "Tutorials",
+      "Status Page",
+      "Changelog",
+      "Roadmap",
     ],
     Legal: [
-      'Privacy Policy',
-      'Terms of Service',
-      'Cookie Policy',
-      'GDPR',
-      'Security',
-      'Compliance'
-    ]
+      "Privacy Policy",
+      "Terms of Service",
+      "Cookie Policy",
+      "GDPR",
+      "Security",
+      "Compliance",
+    ],
   };
 
   return (
@@ -68,10 +97,10 @@ const Footer = () => {
               <span className="text-3xl font-bold font-sora">LinkCraft</span>
             </div>
             <p className="text-gray-400 text-lg leading-relaxed mb-8 max-w-md">
-              The most powerful URL shortener with advanced analytics, 
-              custom domains, and team collaboration features.
+              The most powerful URL shortener with advanced analytics, custom
+              domains, and team collaboration features.
             </p>
-            
+
             {/* Contact info */}
             <div className="space-y-4 mb-8">
               <div className="flex items-center space-x-3 text-gray-400">
@@ -116,7 +145,8 @@ const Footer = () => {
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="text-2xl font-bold mb-4 font-sora">Stay Updated</h3>
             <p className="text-gray-400 mb-6">
-              Get the latest features, tips, and insights delivered to your inbox.
+              Get the latest features, tips, and insights delivered to your
+              inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
@@ -139,7 +169,7 @@ const Footer = () => {
                 © 2024 LinkCraft. All rights reserved.
               </p>
             </div>
-            
+
             {/* Social media links */}
             <div className="flex items-center space-x-6">
               <span className="text-gray-400 font-medium">Follow us:</span>

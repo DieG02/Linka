@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { FiLink, FiCopy, FiCheck, FiExternalLink } from 'react-icons/fi';
-import { BiQrScan } from 'react-icons/bi';
+import React, { useState } from "react";
+import { FiLink, FiCopy, FiCheck, FiExternalLink } from "react-icons/fi";
+import { BiQrScan } from "react-icons/bi";
 
 const URLShortener = () => {
-  const [url, setUrl] = useState('');
-  const [shortenedUrl, setShortenedUrl] = useState('');
+  const [url, setUrl] = useState("");
+  const [shortenedUrl, setShortenedUrl] = useState("");
   const [copied, setCopied] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isValidUrl, setIsValidUrl] = useState(true);
@@ -30,11 +30,11 @@ const URLShortener = () => {
 
   const handleShorten = async () => {
     if (!url || !isValidUrl) return;
-    
+
     setIsLoading(true);
     // Simulate API call
     setTimeout(() => {
-      setShortenedUrl('https://linkcraft.co/abc123');
+      setShortenedUrl("https://linkcraft.co/abc123");
       setIsLoading(false);
     }, 1000);
   };
@@ -53,16 +53,19 @@ const URLShortener = () => {
             Shorten Your URL
           </h2>
           <p className="text-gray-600 text-lg">
-            Transform long URLs into short, shareable links with our custom domain
+            Transform long URLs into short, shareable links with our custom
+            domain
           </p>
         </div>
 
         <div className="space-y-6">
           <div className="relative">
             <div className="absolute left-6 top-1/2 transform -translate-y-1/2 z-10">
-              <FiLink className={`h-6 w-6 transition-colors ${
-                !isValidUrl ? 'text-red-400' : 'text-gray-400'
-              }`} />
+              <FiLink
+                className={`h-6 w-6 transition-colors ${
+                  !isValidUrl ? "text-red-400" : "text-gray-400"
+                }`}
+              />
             </div>
             <input
               type="url"
@@ -70,9 +73,9 @@ const URLShortener = () => {
               value={url}
               onChange={handleUrlChange}
               className={`w-full pl-16 pr-6 py-6 text-lg border-2 rounded-2xl focus:outline-none transition-all duration-200 bg-gray-50/50 font-sora placeholder-gray-400 ${
-                !isValidUrl 
-                  ? 'border-red-300 focus:border-red-500' 
-                  : 'border-gray-200 focus:border-indigo-500'
+                !isValidUrl
+                  ? "border-red-300 focus:border-red-500"
+                  : "border-gray-200 focus:border-indigo-500"
               }`}
             />
             {!isValidUrl && url && (
@@ -93,23 +96,25 @@ const URLShortener = () => {
                 <span>Creating short link...</span>
               </div>
             ) : (
-              'Generate Short Link'
+              "Generate Short Link"
             )}
           </button>
 
           {shortenedUrl && (
             <div className="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-200/50 rounded-2xl p-8 animate-slide-up">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="font-semibold text-gray-900 font-sora text-lg">Your shortened URL:</h3>
+                <h3 className="font-semibold text-gray-900 font-sora text-lg">
+                  Your shortened URL:
+                </h3>
                 <button className="bg-white p-3 rounded-xl hover:bg-gray-50 transition-colors shadow-sm">
                   <BiQrScan className="h-6 w-6 text-gray-600" />
                 </button>
               </div>
-              
+
               <div className="flex items-center space-x-4 bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                <a 
-                  href={shortenedUrl} 
-                  target="_blank" 
+                <a
+                  href={shortenedUrl}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 text-indigo-600 font-medium hover:text-indigo-700 transition-colors truncate text-lg flex items-center space-x-2"
                 >
