@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import {
   BarChart3,
   Eye,
@@ -14,7 +15,7 @@ interface Link {
   createdAt: string;
 }
 
-const RecentLinks = () => {
+export default function RecentLinks() {
   const links: Link[] = [
     {
       id: "1",
@@ -40,6 +41,22 @@ const RecentLinks = () => {
     },
   ];
 
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15, // delay between each card animation
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  };
+
   return (
     <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
       <div className="flex items-center justify-between mb-6">
@@ -49,11 +66,17 @@ const RecentLinks = () => {
         </button>
       </div>
 
-      <div className="space-y-4">
+      <motion.div
+        className="space-y-4"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
         {links.map((link) => (
-          <div
+          <motion.div
             key={link.id}
             className="border border-gray-100 rounded-xl p-5 hover:shadow-md transition-shadow duration-200"
+            variants={item}
           >
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1 min-w-0">
@@ -95,11 +118,9 @@ const RecentLinks = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
-};
-
-export default RecentLinks;
+}
