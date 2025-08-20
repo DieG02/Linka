@@ -1,5 +1,11 @@
-import React from 'react';
-import { BarChart3, Eye, Copy, ExternalLink, MoreHorizontal } from 'lucide-react';
+import { motion } from "framer-motion";
+import {
+  BarChart3,
+  Eye,
+  Copy,
+  ExternalLink,
+  MoreHorizontal,
+} from "lucide-react";
 
 interface Link {
   id: string;
@@ -9,51 +15,77 @@ interface Link {
   createdAt: string;
 }
 
-const RecentLinks = () => {
+export default function RecentLinks() {
   const links: Link[] = [
     {
-      id: '1',
-      originalUrl: 'https://www.example.com/very-long-url-that-needs-shortening',
-      shortUrl: 'shorty.ly/abc123',
+      id: "1",
+      originalUrl:
+        "https://www.example.com/very-long-url-that-needs-shortening",
+      shortUrl: "shorty.ly/abc123",
       clicks: 247,
-      createdAt: '2 hours ago'
+      createdAt: "2 hours ago",
     },
     {
-      id: '2',
-      originalUrl: 'https://www.another-example.com/another-long-url',
-      shortUrl: 'shorty.ly/def456',
+      id: "2",
+      originalUrl: "https://www.another-example.com/another-long-url",
+      shortUrl: "shorty.ly/def456",
       clicks: 89,
-      createdAt: '5 hours ago'
+      createdAt: "5 hours ago",
     },
     {
-      id: '3',
-      originalUrl: 'https://www.third-example.com/yet-another-url',
-      shortUrl: 'shorty.ly/ghi789',
+      id: "3",
+      originalUrl: "https://www.third-example.com/yet-another-url",
+      shortUrl: "shorty.ly/ghi789",
       clicks: 156,
-      createdAt: '1 day ago'
-    }
+      createdAt: "1 day ago",
+    },
   ];
+
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15, // delay between each card animation
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  };
 
   return (
     <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-bold text-gray-900 font-sora">Recent Links</h3>
+        <h3 className="text-2xl font-bold text-gray-900">Recent Links</h3>
         <button className="text-primary-600 hover:text-primary-700 font-medium">
           View All
         </button>
       </div>
 
-      <div className="space-y-4">
+      <motion.div
+        className="space-y-4"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
         {links.map((link) => (
-          <div key={link.id} className="border border-gray-100 rounded-xl p-5 hover:shadow-md transition-shadow duration-200">
+          <motion.div
+            key={link.id}
+            className="border border-gray-100 rounded-xl p-5 hover:shadow-md transition-shadow duration-200"
+            variants={item}
+          >
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1 min-w-0">
                 <p className="text-sm text-gray-600 truncate mb-1">
                   {link.originalUrl}
                 </p>
-                <a 
-                  href={`https://${link.shortUrl}`} 
-                  target="_blank" 
+                <a
+                  href={`https://${link.shortUrl}`}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary-600 font-medium hover:text-primary-700 transition-colors"
                 >
@@ -64,7 +96,7 @@ const RecentLinks = () => {
                 <MoreHorizontal className="h-4 w-4 text-gray-400" />
               </button>
             </div>
-            
+
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4 text-sm text-gray-600">
                 <div className="flex items-center space-x-1">
@@ -73,7 +105,7 @@ const RecentLinks = () => {
                 </div>
                 <span>{link.createdAt}</span>
               </div>
-              
+
               <div className="flex items-center space-x-2">
                 <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors">
                   <BarChart3 className="h-4 w-4 text-gray-400" />
@@ -86,11 +118,9 @@ const RecentLinks = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
-};
-
-export default RecentLinks;
+}

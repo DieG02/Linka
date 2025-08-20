@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import { FiLink, FiCopy, FiCheck, FiExternalLink } from 'react-icons/fi';
-import { BiQrScan } from 'react-icons/bi';
+import React, { useState } from "react";
+import { FiLink, FiCopy, FiCheck, FiExternalLink, FiX } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
+import { shorten } from "../services/api";
+import { QRCodeSVG } from "qrcode.react";
 
 const URLShortener = () => {
-  const [url, setUrl] = useState('');
-  const [shortenedUrl, setShortenedUrl] = useState('');
+  const [url, setUrl] = useState("");
+  const [shortenedUrl, setShortenedUrl] = useState("");
   const [copied, setCopied] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isValidUrl, setIsValidUrl] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const validateUrl = (url: string) => {
     try {
@@ -30,13 +33,31 @@ const URLShortener = () => {
 
   const handleShorten = async () => {
     if (!url || !isValidUrl) return;
-    
+
     setIsLoading(true);
     // Simulate API call
     setTimeout(() => {
-      setShortenedUrl('https://linkcraft.co/abc123');
+      const newUrl = "https://linka.co/abc123";
+      setShortenedUrl(newUrl);
       setIsLoading(false);
+      setUrl("");
+      setShowModal(true);
     }, 1000);
+  };
+
+  const handleSubmit = async (e: any) => {
+    if (!url || !isValidUrl) return;
+    setIsLoading(true);
+    e.preventDefault();
+    try {
+      const { shortUrl } = await shorten(url);
+      setShortenedUrl(shortUrl);
+      setIsLoading(false);
+      setUrl("");
+      setShowModal(true);
+    } catch (err) {
+      alert(err);
+    }
   };
 
   const handleCopy = async () => {
@@ -45,34 +66,34 @@ const URLShortener = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  return (
-    <div className="w-full max-w-4xl mx-auto">
-      <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 p-8 md:p-12">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4 font-sora">
-            Shorten Your URL
-          </h2>
-          <p className="text-gray-600 text-lg">
-            Transform long URLs into short, shareable links with our custom domain
-          </p>
-        </div>
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    console.log("clicked");
+    if (e.target === e.currentTarget) {
+      setShowModal(false);
+    }
+  };
 
-        <div className="space-y-6">
-          <div className="relative">
+  return (
+    <>
+      <div className="w-full relative max-w-4xl mx-auto space-y-6 bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 p-8 md:p-12">
+        <div className="flex gap-6">
+          <div className="relative flex-grow">
             <div className="absolute left-6 top-1/2 transform -translate-y-1/2 z-10">
-              <FiLink className={`h-6 w-6 transition-colors ${
-                !isValidUrl ? 'text-red-400' : 'text-gray-400'
-              }`} />
+              <FiLink
+                className={`h-6 w-6 transition-colors ${
+                  !isValidUrl ? "text-red-400" : "text-gray-400"
+                }`}
+              />
             </div>
             <input
               type="url"
               placeholder="https://example.com/your-long-url"
               value={url}
               onChange={handleUrlChange}
-              className={`w-full pl-16 pr-6 py-6 text-lg border-2 rounded-2xl focus:outline-none transition-all duration-200 bg-gray-50/50 font-sora placeholder-gray-400 ${
-                !isValidUrl 
-                  ? 'border-red-300 focus:border-red-500' 
-                  : 'border-gray-200 focus:border-indigo-500'
+              className={`w-full pl-16 pr-6 py-3 text-lg border-2 rounded-2xl focus:outline-none transition-all duration-200 bg-gray-50/50  placeholder-gray-400 ${
+                !isValidUrl
+                  ? "border-red-300 focus:border-red-500"
+                  : "border-gray-200 focus:border-indigo-500"
               }`}
             />
             {!isValidUrl && url && (
@@ -82,43 +103,81 @@ const URLShortener = () => {
             )}
           </div>
 
-          <button
-            onClick={handleShorten}
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.05 }}
+            onClick={handleSubmit}
             disabled={!url || !isValidUrl || isLoading}
-            className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-6 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg"
+            className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-3 rounded-2xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg flex items-center justify-center"
           >
             {isLoading ? (
-              <div className="flex items-center justify-center space-x-3">
-                <div className="animate-spin rounded-full h-6 w-6 border-2 border-white border-t-transparent"></div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex items-center justify-center space-x-3"
+              >
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                  className="rounded-full h-6 w-6 border-2 border-white border-t-transparent"
+                ></motion.div>
                 <span>Creating short link...</span>
-              </div>
+              </motion.div>
             ) : (
-              'Generate Short Link'
+              <motion.span
+                key="generate-text"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                Generate
+              </motion.span>
             )}
-          </button>
+          </motion.button>
+        </div>
+      </div>
+      {/* Modal */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            className="fixed top-0 left-0 inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm h-screen w-screen"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleOverlayClick}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 50 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-8 relative"
+            >
+              <button
+                onClick={() => setShowModal(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+              >
+                <FiX className="w-6 h-6" />
+              </button>
 
-          {shortenedUrl && (
-            <div className="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-200/50 rounded-2xl p-8 animate-slide-up">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="font-semibold text-gray-900 font-sora text-lg">Your shortened URL:</h3>
-                <button className="bg-white p-3 rounded-xl hover:bg-gray-50 transition-colors shadow-sm">
-                  <BiQrScan className="h-6 w-6 text-gray-600" />
-                </button>
-              </div>
-              
-              <div className="flex items-center space-x-4 bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                <a 
-                  href={shortenedUrl} 
-                  target="_blank" 
+              <h3 className="text-xl font-semibold text-gray-900 mb-6">
+                Your Shortened URL
+              </h3>
+
+              <div className="flex items-center space-x-3 bg-gray-50 rounded-xl p-4 border mb-6">
+                <a
+                  href={shortenedUrl}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 text-indigo-600 font-medium hover:text-indigo-700 transition-colors truncate text-lg flex items-center space-x-2"
+                  className="flex-1 text-indigo-600 font-medium hover:text-indigo-700 truncate flex items-center space-x-2"
                 >
                   <span>{shortenedUrl}</span>
                   <FiExternalLink className="h-4 w-4" />
                 </a>
                 <button
                   onClick={handleCopy}
-                  className="flex items-center space-x-2 bg-indigo-500 text-white px-6 py-3 rounded-xl hover:bg-indigo-600 transition-colors shadow-sm"
+                  className="flex items-center space-x-2 bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors"
                 >
                   {copied ? (
                     <>
@@ -133,11 +192,17 @@ const URLShortener = () => {
                   )}
                 </button>
               </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+
+              {/* QR Code */}
+              <div className="flex flex-col items-center justify-center">
+                <QRCodeSVG value={shortenedUrl} size={180} />
+                <p className="mt-4 text-sm text-gray-600">Scan this QR code</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
