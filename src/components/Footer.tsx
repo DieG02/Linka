@@ -94,7 +94,7 @@ const Footer = () => {
               <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-3 rounded-2xl">
                 <FiLink className="h-8 w-8 text-white" />
               </div>
-              <span className="text-3xl font-bold">LinkCraft</span>
+              <span className="text-3xl font-bold">Linka</span>
             </div>
             <p className="text-gray-400 text-lg leading-relaxed mb-8 max-w-md">
               The most powerful URL shortener with advanced analytics, custom
@@ -105,7 +105,7 @@ const Footer = () => {
             <div className="space-y-4 mb-8">
               <div className="flex items-center space-x-3 text-gray-400">
                 <FiMail className="h-5 w-5" />
-                <span>hello@linkcraft.co</span>
+                <span>hello@linka.co</span>
               </div>
               <div className="flex items-center space-x-3 text-gray-400">
                 <FiPhone className="h-5 w-5" />
@@ -166,7 +166,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
             <div className="flex items-center space-x-6">
               <p className="text-gray-400">
-                © 2024 LinkCraft. All rights reserved.
+                © 2024 Linka. All rights reserved.
               </p>
             </div>
 
