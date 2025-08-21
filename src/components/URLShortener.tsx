@@ -67,7 +67,6 @@ const URLShortener = () => {
   };
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    console.log("clicked");
     if (e.target === e.currentTarget) {
       setShowModal(false);
     }

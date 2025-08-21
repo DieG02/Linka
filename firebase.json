@@ -6,8 +6,12 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "../dist",
+    "public": "dist",
     "rewrites": [
+     {
+        "source": "/api/shorten",
+        "function": "shorten"
+      },
       {
         "source": "**",
         "function": "redirect"

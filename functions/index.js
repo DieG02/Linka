@@ -85,7 +85,6 @@ export const shorten = v2.https.onRequest(async (req, res) => {
 // HTTP function to redirect to the long URL
 export const redirect = v2.https.onRequest(async (req, res) => {
   // Get the short ID from the URL path
-  console.log({ shortId: req.path.slice(1) });
   const shortId = req.path.slice(1);
 
   if (!shortId) {
@@ -112,64 +111,3 @@ export const redirect = v2.https.onRequest(async (req, res) => {
     res.status(500).send("An error occurred.");
   }
 });
-
-/**
- * POST /shorten
- * Body: { longUrl: string }
- * Returns: { shortId: string, shortUrl: string }
- */
-// export const shorten = v2.https.onRequest(async (req, res) => {
-//   // CORS
-//   res.set("Access-Control-Allow-Origin", "*");
-//   if (req.method === "OPTIONS") {
-//     res.set("Access-Control-Allow-Methods", "POST");
-//     res.set("Access-Control-Allow-Headers", "Content-Type");
-//     res.status(204).send("");
-//     return;
-//   }
-
-//   if (req.method !== "POST") {
-//     res.status(405).send("Method Not Allowed");
-//     return;
-//   }
-
-//   const { longUrl } = req.body;
-//   if (!longUrl || !/^https?:\/\//i.test(longUrl)) {
-//     res.status(400).json({ error: "Invalid URL format" });
-//     return;
-//   }
-
-//   const shortId = generateShortId();
-//   await db.collection("urls").doc(shortId).set({
-//     longUrl,
-//     createdAt: FieldValue.serverTimestamp(),
-//     clicks: 0,
-//   });
-
-//   const shortUrl = `${req.protocol}://${req.get("host")}/redirect/${shortId}`;
-//   res.json({ shortId, shortUrl });
-// });
-
-// http://127.0.0.1:5001/linka-588ff/us-central1/redirect/7f72fe worked!
-/**
- * GET /redirect/<shortId>
- * Redirects to the original long URL and increments click count.
- */
-// export const redirect = v2.https.onRequest(async (req, res) => {
-//   const shortId = req.params[0];
-//   if (!shortId) {
-//     res.status(404).send("URL not found");
-//     return;
-//   }
-
-//   const doc = await db.collection("urls").doc(shortId).get();
-//   if (!doc.exists) {
-//     res.status(404).send("URL not found");
-//     return;
-//   }
-
-//   const { longUrl } = doc.data();
-//   await doc.ref.update({ clicks: FieldValue.increment(1) });
-
-//   res.redirect(301, longUrl);
-// });
