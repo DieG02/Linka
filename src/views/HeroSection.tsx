@@ -55,7 +55,7 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-6xl font-bold text-gray-800 mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 mb-6"
             variants={fadeInUp}
             initial="hidden"
             animate="visible"

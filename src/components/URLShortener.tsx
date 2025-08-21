@@ -74,8 +74,8 @@ const URLShortener = () => {
 
   return (
     <>
-      <div className="w-full relative max-w-4xl mx-auto space-y-6 bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 p-8 md:p-12">
-        <div className="flex gap-6">
+      <div className="w-full relative max-w-4xl mx-auto space-y-6 bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 p-6 sm:p-8 md:p-12">
+        <div className="flex gap-4 sm:gap-6 flex-col md:flex-row">
           <div className="relative flex-grow">
             <div className="absolute left-6 top-1/2 transform -translate-y-1/2 z-10">
               <FiLink
@@ -140,7 +140,7 @@ const URLShortener = () => {
       <AnimatePresence>
         {showModal && (
           <motion.div
-            className="fixed top-0 left-0 inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm h-screen w-screen"
+            className="fixed top-0 left-0 inset-0 z-50 flex items-center p-4 justify-center bg-black/50 backdrop-blur-sm h-screen w-screen"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -155,12 +155,12 @@ const URLShortener = () => {
             >
               <button
                 onClick={() => setShowModal(false)}
-                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+                className="absolute top-6 right-6 text-gray-400 hover:text-gray-600"
               >
                 <FiX className="w-6 h-6" />
               </button>
 
-              <h3 className="text-xl font-semibold text-gray-900 mb-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 md:mb-6">
                 Your Shortened URL
               </h3>
 
